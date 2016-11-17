@@ -1,0 +1,24 @@
+﻿@using System.Web.Services.Description
+@using System.Web.UI.WebControls
+@using System.Web.Razor.Parser
+
+@{
+    ViewBag.Title = "Publishing";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>File Upload and View</h2>
+@using (Html.BeginForm("Index", "Publishing", FormMethod.Post, new {@enctype = "multipart/form-data", @id = "MyForm"}))
+{
+    <body>
+    <main>
+        <p>Submit an SDK here for publishing</p>
+        <form method="get" action="Index.cshtml">
+            File Upload:<input type="file" name="upLoad"/><br/>
+            <input type="submit" name="submit" value="UpLoad" id="fileUpload"/>
+        </form>
+       
+    </main>
+    </body>
+}
+
+
