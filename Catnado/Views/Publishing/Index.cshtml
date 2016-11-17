@@ -7,18 +7,27 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h2>File Upload and View</h2>
-@using (Html.BeginForm("Index", "Publishing", FormMethod.Post, new {@enctype = "multipart/form-data", @id = "MyForm"}))
-{
-    <body>
+<body>
     <main>
-        <p>Submit an SDK here for publishing</p>
-        <form method="get" action="Index.cshtml">
-            File Upload:<input type="file" name="upLoad"/><br/>
-            <input type="submit" name="submit" value="UpLoad" id="fileUpload"/>
-        </form>
-       
+        @using (Html.BeginForm("Index", "Publishing", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <p>Submit an SDK here for publishing</p>
+            <form method="post" action="" enctype="multipart/form-data">
+                <label for="file1">Filename:</label>
+                <input type="file" name="files" id="file1" />
+                <br />
+                <label for="file2">Filename:</label>
+                <input type="file" name="files" id="file2" />
+                <br />
+                <input type="submit" />
+            </form>
+            <br />
+        }
+        @ViewBag.Message
+
+      
+
+        <textarea rows="20" id="area"></textarea>
+
     </main>
-    </body>
-}
-
-
+</body>

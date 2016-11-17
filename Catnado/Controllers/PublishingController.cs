@@ -14,31 +14,22 @@ namespace Catnado.Controllers
         {
             return View();
         }
+
         [HttpPost]
-        public ActionResult Index(HttpPostedFileBase file)
+        public ActionResult Index(HttpPostedFile files)
         {
-            if (file != null && file.ContentLength > 0)
-                try
-                {
-                    string folderPath = Server.MapPath(("~/Files/"));
-
-                    if (!Directory.Exists(folderPath))
-                    {
-                        Directory.CreateDirectory(folderPath);
-                    }
-                    string path = Path.Combine(Server.MapPath("~/Files"), Path.GetFileName(file.FileName));
-
-                    file.SaveAs(path);
-
-                    ViewBag.Message = "File uploaded successfully";
-                }
-                catch (Exception ex)
-                {
-                    ViewBag.Message = "ERROR: " + ex.Message;
-                }
-            else
+            foreach (string file in Request.Files)
             {
-                ViewBag.Message = "You have not specified a file.";
+
+                HttpPostedFileBase hpf = Request.Files[file];
+                if (hpf.ContentLength == 0)
+                {
+                    continue;
+                }
+                string fileName = Path.Combine(
+                    AppDomain.CurrentDomain.BaseDirectory, Path.GetFileName(hpf.FileName));
+                hpf.SaveAs(fileName);
+
             }
             return View();
         }
