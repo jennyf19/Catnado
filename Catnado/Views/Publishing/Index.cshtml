@@ -22,12 +22,11 @@
                 <input type="submit" />
             </form>
             <br />
+            <p>File upload complete</p>
         }
-        @ViewBag.Message
-
-      
-
-        <textarea rows="20" id="area"></textarea>
-
+        @using (Html.BeginForm("Index", "Publishing", FormMethod.Post, new {enctype = "application/pdf"}))
+        {
+            <textarea rows="20" id="area">Uploaded text:</textarea>
+        }
     </main>
 </body>
