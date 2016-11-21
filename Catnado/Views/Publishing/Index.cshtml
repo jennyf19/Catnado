@@ -2,31 +2,56 @@
 @using System.Web.UI.WebControls
 @using System.Web.Razor.Parser
 
+
 @{
     ViewBag.Title = "Publishing";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>File Upload and View</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <title>Index</title>
+    <style>
+        .btn a {
+            color: white;
+            text-decoration: none;
+        }
+
+        body {
+            background-color: #F1F1F1;
+        }
+    </style>
+
+</head>
 <body>
-    <main>
-        @using (Html.BeginForm("Index", "Publishing", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
-            <p>Submit an SDK here for publishing</p>
-            <form method="post" action="" enctype="multipart/form-data">
-                <label for="file1">Filename:</label>
-                <input type="file" name="files" id="file1" />
-                <br />
-                <label for="file2">Filename:</label>
-                <input type="file" name="files" id="file2" />
-                <br />
-                <input type="submit" />
-            </form>
-            <br />
-            <p>File upload complete</p>
-        }
-        @using (Html.BeginForm("Index", "Publishing", FormMethod.Post, new {enctype = "application/pdf"}))
-        {
-            <textarea rows="20" id="area">Uploaded text:</textarea>
-        }
-    </main>
+    <div class="text-center">
+        <h2>We're going to have an exciting cat party!</h2>
+        <h3>And you and your cats are invited</h3>
+        <div class="btn btn-success">
+            @Html.ActionLink("RSVP Now", "RsvpForm")
+    </div>
+</div>
+<h2>File Upload and View</h2>
+
+@using (Html.BeginForm("Index", "Publishing", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <p>Submit an SDK here for publishing</p>
+    <form method="post" action="" enctype="multipart/form-data">
+        <label for="file1">Filename:</label>
+        <input type="file" name="files" id="file1" />
+        <br />
+        <label for="file2">Filename:</label>
+        <input type="file" name="files" id="file2" />
+        <br />
+        <input type="submit" />
+    </form>
+    <br />
+    <p>File upload complete</p>
+}
+@Html.ActionLink("RSVP Now", "RsvpForm")
+
 </body>
+</html>

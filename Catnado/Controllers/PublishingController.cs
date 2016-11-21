@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.IO;
 using System.Web.Services.Description;
+using Catnado.Models;
 
 namespace Catnado.Controllers
 {
@@ -35,13 +36,25 @@ namespace Catnado.Controllers
             return View();
         }
 
-        public FileContentResult File()
+        [HttpGet]
+        public ViewResult RsvpForm()
         {
-            var fullPathToFile = @"/App_Data/uploads";
-            var mimeType = "application/pdf";
-            var fileContents = System.IO.File.ReadAllBytes(fullPathToFile);
+            return View();
+        }
 
-            return new FileContentResult(fileContents, mimeType);
+        [HttpPost]
+        public ViewResult RsvpForm(GuestResponse guestResponse)
+        {
+            if (ModelState.IsValid)
+            {
+                //TODO: Email response to the party organizer
+                return View("Thanks", guestResponse);
+            }
+            else
+            {
+                //there is a validation error
+                return View();
+            }
         }
     }
 }
